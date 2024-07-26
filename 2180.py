@@ -1,22 +1,24 @@
-import math 
-def primo(n):
-    primo = 0
-    save = int(math.sqrt(n))
-    for i in range(1, save):
-        if (n%i == 0):
-            return False
+import math
 
+def primo(n):
+    if n < 2:
+        return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
     return True
 
 peso = int(input())
 velocidade_max = 0
-i = 0
-while i < 10:
-    if (primo(peso)):
+count = 0
+
+while count < 10:
+    if primo(peso):
         velocidade_max += peso
-        i+=1
+        count += 1
     peso += 1
-print("{}  km/h".format(velocidade_max))
-res = 60000000/velocidade_max
-res = res//24
-print("{} h / {} d".format(60000000/velocidade_max, res))
+
+print(f"{velocidade_max} km/h")
+res = 60000000 / velocidade_max
+days = res // 24
+print(f"{int(res)} h / {int(days)} d")
